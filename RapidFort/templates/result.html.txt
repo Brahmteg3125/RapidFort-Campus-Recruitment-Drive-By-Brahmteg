@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>File Metadata</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>File Metadata</h1>
+    <ul>
+    {% for key, value in metadata.items() %}
+        <li><strong>{{ key.capitalize() }}:</strong> {{ value }}</li>
+    {% endfor %}
+    </ul>
+    <form action="{{ url_for('download_file', filename=filename) }}" method="get">
+        <button type="submit">Convert to PDF</button>
+    </form>
+</body>
+</html>

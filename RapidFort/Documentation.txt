@@ -1,0 +1,142 @@
+ Documentation
+Project Title: DOCX to PDF Converter Web Application
+Table of Contents
+Introduction
+Features
+Technology Stack
+Prerequisites
+Installation
+Usage
+Exception Handling
+Dockerization
+Continuous Integration with GitHub Actions
+Kubernetes Deployment
+Security Considerations
+
+Introduction
+This web application allows you to upload a DOCX file, view its metadata, convert it to a password-protected PDF, and download the converted PDF. It provides a simple user interface and supports additional features like Dockerization and Kubernetes deployment.
+
+Features
+Upload DOCX files
+Display file metadata
+Convert DOCX to PDF
+Optionally password-protect the PDF
+Simple UI for interaction
+Dockerized application for easy deployment
+Continuous Integration pipeline with GitHub Actions
+Kubernetes manifests for scalable deployment
+Technology Stack
+Programming Language: Python 3.9+
+Web Framework: Flask
+Libraries:
+python-docx for extracting metadata from DOCX files
+docx2pdf for converting DOCX to PDF
+PyPDF2 for adding password protection to PDFs
+Containerization: Docker
+CI/CD: GitHub Actions
+Orchestration: Kubernetes
+Prerequisites
+Docker
+Git
+Python 3.9+ 
+Kubernetes 
+
+Cloning the Repository
+bash
+git clone https://github.com/Brahmteg3125/RapidFort-Campus-Recruitment-Drive-By-Brahmteg.git
+cd docx-to-pdf-converter
+Installing Dependencies
+bash
+pip install -r requirements.txt
+
+
+bash
+python app.py
+Access the Application
+
+Open your web browser and navigate to http://localhost:5000.
+
+Running with Docker
+Build and Run the Docker Container
+
+bash
+chmod +x run_container.sh
+./run_container.sh
+Access the Application
+
+Open your web browser and navigate to http://localhost:5000.
+
+Uploading and Converting Files
+Upload a DOCX File
+
+On the homepage, click on the file input field, select your DOCX file, and click "Upload".
+
+View Metadata
+
+After uploading, the application will display the metadata extracted from the DOCX file.
+
+Convert to PDF
+
+Click the "Convert to PDF" button to proceed to the download page.
+
+Password-Protect (Optional) and Download
+
+If you wish to add a password to the PDF, enter it in the provided field.
+Click "Download PDF" to download your converted PDF file.
+
+Exception Handling
+The application includes comprehensive exception handling to ensure robustness and provide meaningful feedback to the user.
+
+Key Exception Handling Scenarios:
+
+File Upload Errors:
+
+Missing File Part: Returns a 400 error if the file part is missing in the request.
+Empty Filename: Returns a 400 error if no file is selected.
+Invalid File Type: Returns a 400 error if the uploaded file is not a DOCX file.
+File Processing Errors:
+
+Metadata Extraction Failure: Handles exceptions during metadata extraction and notifies the user.
+Conversion Failure: Handles exceptions during DOCX to PDF conversion and notifies the user.
+Password Protection Failure: Handles exceptions when adding password protection to the PDF.
+File I/O Errors:
+
+Handles exceptions related to file reading/writing operations, such as permission issues or missing files.
+Dockerization
+The application is Dockerized to simplify deployment.
+
+Building and Running the Docker Image:
+
+Build the Docker Image:
+
+bash
+docker build -t docx-to-pdf-converter .
+Run the Docker Container:
+
+bash
+docker run -d -p 5000:5000 --name docx-to-pdf-app docx-to-pdf-converter
+Access the Application:
+
+Navigate to http://localhost:5000 in your web browser.
+
+
+Update Image Reference:
+
+In deployment.yaml, update the image field to point to the Docker image available in your container registry.
+
+Apply Manifests:
+
+bash
+kubectl apply -f kubernetes/deployment.yaml
+kubectl apply -f kubernetes/service.yaml
+Access the Application:
+
+Use the service's external IP address to access the application.
+
+Security Considerations
+Input Validation: All user inputs are validated and sanitized to prevent injection attacks.
+File Handling: Uploaded files are securely handled and stored in a designated directory.
+HTTPS: For production deployments, configure HTTPS to secure data transmission.
+Secret Management: Sensitive information like SECRET_KEY should be managed securely, using environment variables or secret management tools.
+
+

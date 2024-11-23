@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docx-to-pdf-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: docx-to-pdf
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
